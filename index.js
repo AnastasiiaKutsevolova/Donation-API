@@ -2,8 +2,10 @@ require("dotenv").config();
 
 const express = require("express");
 const mongoose = require("mongoose");
+const mainPageRoute = require("./routes/index");
 const signUpRoute = require("./routes/signup");
 const volunteerRoute = require("./routes/volunteer");
+const aboutUsRoute = require("./routes/about");
 const pug = require("pug");
 
 //Init app
@@ -12,8 +14,10 @@ const port = 3001;
 
 app.use(express.json());
 app.use(express.urlencoded());
+app.use(mainPageRoute);
 app.use(signUpRoute);
 app.use(volunteerRoute);
+app.use(aboutUsRoute);
 app.use(express.static("public"));
 
 //Load view engine
@@ -27,6 +31,7 @@ const start = async () => {
       `mongodb+srv://${process.env.USER_NAME}:${process.env.USER_PASSWORD}@cluster0.wk7nx.mongodb.net/donationDB?retryWrites=true&w=majority`,
       {
         useNewUrlParser: true,
+        useUnifiedTopology: true,
       }
     );
 

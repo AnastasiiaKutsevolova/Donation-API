@@ -16,8 +16,17 @@ body
           label(for='about')
             b How can I help 
           input(type='text' placeholder='About me' name='about' required='')
-          p
-            | By creating an account you agree to our
+          label(for='gender') 
+            b Please select your gender
+          .radio 
+          input#na(type='radio' name='gender' value='na' checked)
+          label(for='na') Prefer not to answer
+          input#male(type='radio' name='gender' value='male')
+          label(for='male') Male
+          input#female(type='radio' name='gender' value='female')
+          label(for='female') Female
+          p 
+            | By creating an account you agree to our 
             a(href='#' style='color: rgb(19, 91, 207)') Terms &amp; Privacy
             | .
           .clearfix
