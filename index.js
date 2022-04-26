@@ -1,28 +1,26 @@
 require("dotenv").config();
 
 const express = require("express");
+const cors = require("cors");
 const mongoose = require("mongoose");
+
+// Route Files
 const mainPageRoute = require("./routes/index");
-const signUpRoute = require("./routes/signup");
+const signupRoute = require("./routes/signup");
+const loginRoute = require("./routes/login");
 const volunteerRoute = require("./routes/volunteer");
-const aboutUsRoute = require("./routes/about");
-const pug = require("pug");
 
 //Init app
 const app = express();
-const port = 3001;
+const port = 3003;
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(mainPageRoute);
-app.use(signUpRoute);
+app.use(loginRoute);
+app.use(signupRoute);
 app.use(volunteerRoute);
-app.use(aboutUsRoute);
-app.use(express.static("public"));
-
-//Load view engine
-app.set("view engine", "pug");
-app.set("views", "./views");
 
 //Connected Data Base
 const start = async () => {

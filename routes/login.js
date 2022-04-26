@@ -1,15 +1,12 @@
-const express = require("express");
 const { Router } = require("express");
 const router = Router();
 
-// Bring in User Model
 const User = require("../models/user");
 
-// Signup Form
-router.get("/signup", async (req, res) => {
+router.get("/login", async (req, res) => {
   try {
-    const users = await User.find({});
-    return res.json({ users });
+    const user = await User.find({});
+    return res.json({ user });
   } catch {
     res.status(400).json({ message: "Error" });
   }
@@ -18,7 +15,6 @@ router.get("/signup", async (req, res) => {
 router.post("/signup", (req, res) => {
   const userPost = new User();
 
-  userPost.name = req.body.name;
   userPost.email = req.body.email;
   userPost.password = req.body.password;
 

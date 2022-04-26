@@ -4,11 +4,11 @@ const mongoose = require("mongoose");
 const volunteerSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, "Name is required"],
+    required: true,
   },
   email: {
     type: String,
-    required: [true, "Email is required"],
+    required: true,
   },
   about: {
     type: String,

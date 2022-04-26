@@ -3,10 +3,13 @@ const router = Router();
 
 const Volunteer = require("../models/volunteer");
 
-router.get("/volunteer", (req, res) => {
-  res.render("volunteer/layout", {
-    name: true,
-  });
+router.get("/volunteer", async (req, res) => {
+  try {
+    const volunteers = await Volunteer.find({});
+    return res.json({ volunteers });
+  } catch {
+    res.status(400).json({ message: "Error" });
+  }
 });
 
 router.post("/volunteer", (req, res) => {
@@ -20,9 +23,9 @@ router.post("/volunteer", (req, res) => {
     if (err) {
       console.log(err);
       return;
-    } else {
-      res.redirect("/volunteer/find");
     }
+
+    res.status(201).json({ message: "success" });
   });
 });
 
