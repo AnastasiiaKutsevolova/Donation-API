@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const router = Router();
+const auth = require("../middleware/auth.middleware");
 
 const Volunteer = require("../models/volunteer");
 
@@ -12,7 +13,7 @@ router.get("/volunteer", async (req, res) => {
   }
 });
 
-router.post("/volunteer", (req, res) => {
+router.post("/volunteer", auth, (req, res) => {
   const volunteerPost = new Volunteer();
 
   volunteerPost.name = req.body.name;

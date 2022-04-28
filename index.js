@@ -5,21 +5,18 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 
 // Route Files
-const mainPageRoute = require("./routes/index");
-const signupRoute = require("./routes/signup");
-const loginRoute = require("./routes/login");
+const authRoute = require("./routes/auth");
 const volunteerRoute = require("./routes/volunteer");
 
 //Init app
 const app = express();
 const port = 3003;
 
+//Use Routes middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
-app.use(mainPageRoute);
-app.use(loginRoute);
-app.use(signupRoute);
+app.use(authRoute);
 app.use(volunteerRoute);
 
 //Connected Data Base
@@ -38,6 +35,7 @@ const start = async () => {
     });
   } catch (error) {
     console.error(error);
+    process.exit(1);
   }
 };
 
