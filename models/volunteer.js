@@ -5,6 +5,7 @@ const volunteerSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
+    min: 2,
   },
   email: {
     type: String,
@@ -13,6 +14,7 @@ const volunteerSchema = new mongoose.Schema({
   about: {
     type: String,
     required: true,
+    max: 300,
   },
   createdAt: {
     type: Date,
