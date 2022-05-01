@@ -92,7 +92,7 @@ router.post(
         { expiresIn: "24h" }
       );
 
-      res.json({ token, userId: user.id });
+      res.json({ token, user });
     } catch (error) {
       res.status(500).json({ message: "Something went wrong...", error });
     }
