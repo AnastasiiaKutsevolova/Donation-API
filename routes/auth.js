@@ -37,9 +37,23 @@ router.post(
         password: hashedPassword,
       });
 
+      const token = jwt.sign(
+        {
+          userId: user.id,
+        },
+        process.env.JWT_SECRET,
+        { expiresIn: "24h" }
+      );
+
       await user.save();
 
-      res.status(201).json({ message: ` ${name} user has been created` });
+      res.status(201).json({
+        message: ` ${name} user has been created`,
+        user: {
+          user,
+          token,
+        },
+      });
     } catch (error) {
       res.status(500).json({ message: "Something went wrong..." });
     }
@@ -65,8 +79,6 @@ router.post(
         });
       }
       const { email, password } = req.body;
-
-      console.log("email", email);
 
       const user = await User.findOne({ email });
 
