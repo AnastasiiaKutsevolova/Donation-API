@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 // Route Files
 const authRoute = require("./routes/auth");
 const volunteerRoute = require("./routes/volunteer");
+const userRoute = require("./routes/user");
 
 //Init app
 const app = express();
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(authRoute);
 app.use(volunteerRoute);
+app.use(userRoute);
 
 //Connected Data Base
 const start = async () => {
