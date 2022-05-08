@@ -2,6 +2,7 @@ const { Router } = require("express");
 const User = require("../models/user");
 const auth = require("../middleware/auth.middleware");
 const { sanitizedObj } = require("../utils");
+const Volunteer = require("../models/volunteer");
 
 const router = Router();
 // Find user
@@ -42,10 +43,11 @@ router.put("/user", auth, async (req, res) => {
 });
 
 // Delete User
-router.delete("/user/:id", auth, async (req, res) => {
+router.delete("/user", auth, async (req, res) => {
   try {
-    // TODO remove associated posts
-    await User.findByIdAndDelete(req.params.id);
+    await Volunteer.deleteMany({ author: req.user.userId });
+
+    await User.findByIdAndDelete(req.user.userId);
 
     res.status(204).send();
   } catch (error) {
