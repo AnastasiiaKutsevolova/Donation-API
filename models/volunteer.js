@@ -22,7 +22,8 @@ const volunteerSchema = new mongoose.Schema(
       default: Date.now,
     },
     author: {
-      type: String,
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "User",
       required: true,
     },
   },
