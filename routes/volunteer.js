@@ -19,6 +19,7 @@ router.post("/volunteer", auth, (req, res) => {
   volunteerPost.name = req.body.name;
   volunteerPost.email = req.body.email;
   volunteerPost.about = req.body.about;
+  volunteerPost.author = req.user.userId;
 
   volunteerPost.save(function (err) {
     if (err) {
@@ -28,6 +29,38 @@ router.post("/volunteer", auth, (req, res) => {
 
     res.status(201).json({ message: "success" });
   });
+});
+
+//Update Volunteer Post
+router.put("/volunteer/:postId", auth, async (req, res) => {
+  try {
+    const { name, email, about } = req.body;
+
+    const post = {
+      name,
+      email,
+      about,
+    };
+    const updatedPost = await Volunteer.findByIdAndUpdate(
+      req.post.postId,
+      sanitizedObj(post),
+      { new: true } // returns the new document
+    );
+    res.status(200).json({ user: updatedPost });
+  } catch (error) {
+    return res.status(500).json({ error });
+  }
+});
+
+// Delete Volunteer Post
+router.delete("/volunteer/:postId", auth, async (req, res) => {
+  try {
+    await Volunteer.findByIdAndDelete(req.params.postId);
+
+    res.status(204).send();
+  } catch (error) {
+    return res.status(500).json({ error });
+  }
 });
 
 module.exports = router;
