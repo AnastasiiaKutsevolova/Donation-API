@@ -87,7 +87,7 @@ router.post(
       if (!user) {
         return res
           .status(400)
-          .json({ message: "invalid user name or password!" });
+          .json({ message: "invalid user name or password!", user: null });
       }
 
       const isMatch = await bcrypt.compare(password, user.password);

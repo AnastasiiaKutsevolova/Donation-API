@@ -11,10 +11,13 @@
     "type": "git",
     "url": "git+https://github.com/AnastasiiaKutsevolova/Donation-API.git"
   },
-  "author": "",
+  "author": "Anastasia Kutsevolova anastasiasemenok@gmail.com",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/AnastasiiaKutsevolova/Donation-API/issues"
+  },
+  "engines": {
+    "node": "16.14.2"
   },
   "homepage": "https://github.com/AnastasiiaKutsevolova/Donation-API#readme",
   "dependencies": {
