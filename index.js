@@ -11,7 +11,7 @@ const userRoute = require("./routes/user");
 
 //Init app
 const app = express();
-const port = 3003;
+const port = 3003 || process.env.PORT;
 
 //Use Routes middleware
 app.use(cors());
